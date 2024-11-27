@@ -13,13 +13,13 @@ class User(db.Model, UserMixin):
     """User table"""
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), unique=True, index=True)
-    password_hash = db.Column(db.String(128))
+    password_hash = db.Column(db.String(256))
 
     def __repr__(self):
         return f'User: {self.username}'
 
     def set_password(self, password):
-        """Hash user password befor storage"""
+        """Hash user password befor storage""" 
         self.password_hash = generate_password_hash(password)
 
     def check_password(self, password):
